@@ -1,0 +1,35 @@
+
+###########################################
+#  Configuration of docker build process  #
+###########################################
+
+# The base docker image for the created docker image:
+base-image: kpipe/step-base-alpine:latest
+
+# The name of the created docker image (without tag, the tag will be added automatically)
+image: test-step
+
+# The path of the target repository within the registry
+repository: kpipe
+
+# Additional alpine packages to be installed (space separated list)
+dependencies: bash
+
+# Folders added to the docker image (space separated list)
+added: run.sh
+
+############################################################
+# The following settings usually do not have to be changed #
+############################################################
+
+# The command to be executed inside the docker container
+wrapper-command: bash run.sh
+
+# Command to be executed (outside the docker container) to test the functionality
+test-script: test.sh
+
+# The registry to which the created docker image is pushed
+registry: docker.io
+
+# the targe platform for the created docker image
+platform: linux/amd64
